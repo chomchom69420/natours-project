@@ -1,0 +1,88 @@
+.section-about{
+    background-color: $colour-grey-light-1;
+    padding: 25rem 0;
+
+    //shifts the grey background up by 20vh
+    margin-top: -20vh;  
+
+    
+}
+
+//section about is only specific to the home page so it is put here
+
+//section-tours is going to stay in the code
+
+
+.section-features{
+    padding: 20rem 0;
+
+    background-image: linear-gradient(
+        to right bottom, 
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8)), 
+        url(../img/nat-4.jpg);
+
+    background-size: cover;
+
+    //now going to skew the section
+
+    transform: skewY(-7deg);
+
+    margin-top: -12rem;
+
+    //direct child selector
+    //selects every direct child (just one level below) .section-features
+
+    & > * {
+
+        //skews the children in the other direction to make them horizontal
+        transform: skewY(7deg);
+    }
+}
+
+.section-tours{
+    background-color: $colour-grey-light-1;
+    padding: 25rem 0;
+
+    //shifts the grey background up by 20vh
+    margin-top: -20vh;    
+}
+
+.section-stories{
+    position: relative;
+    padding: 15rem 0;
+}
+
+.section-book{
+    padding: 15rem 0;
+    background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+}
+
+.book {
+    //if we specify an angle in the parameters it will go that amount of degrees clockwise to the direction it was initially going
+        // background-image: linear-gradient(90deg, rgba($color-white, .9), orangered), url(../img/nat-10.jpg);
+
+    background-image: linear-gradient(105deg, 
+                                      rgba($color-white, .9) 0%, 
+                                      rgba($color-white, .9) 50%,
+                                      transparent 50%), 
+                      url(../img/nat-10.jpg);
+
+    //white at 0%, white at 50% and white at 40%, so there will be a sharp edge inclined at 105deg
+    //solid line gradient (tho we can add feathers using this as well
+
+
+    background-size: 100%;  //100% is equivalent to cover
+    //50% would be 2x2 grid of the same image
+    //25% would be 4x4 grid of the same image
+    border-radius: 3px;
+    box-shadow: 0 2.5rem 4rem rgba($color-black, .15);
+    height: 50rem;
+
+    &__form {
+
+        width: 50%;
+        padding: 6rem;
+        
+    }
+}

@@ -1,0 +1,100 @@
+.story{
+
+    width: 75%;
+
+    //box element inside a box element so margin: 0 auto can be used to center this element
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color-black, .1);
+    background-color: rgba($color-white, 0.6);
+    border-radius: 3px;
+
+    //extra 3rem for shifting of the figure
+    padding: 6rem + 3rem;
+
+    font-size: $default-font-size;
+
+    transform: skewX(-12deg);
+
+    & > * {
+        transform: skewX(12deg);
+    }
+
+    &__shape {
+        position: relative;
+
+        width: 15rem;
+        height: 15rem;
+
+        //make it float left 
+        float: left;
+
+        //shape-outside property - have to define a vectorised shape
+        //for shape-outside to work, we have to float it
+        //circle(radius at x y );   radius - 50% --> half the size of the shape
+        //only works if the element has defined dimensions
+        //shape-outside defines where the content flows around the element
+
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+
+        -webkit-clip-path: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+
+        //to create a gap of 3rem
+        transform: translateX(-3rem) skewX(12deg);
+    }
+
+    &__image{
+
+        
+        //image height is 100% of the parent height
+        height: 100%;
+        opacity: 1;
+        transform: scale(1.05);
+        // backface-visibility: hidden;
+
+        transition: all 0.5s ease;
+    }
+
+    &__caption{
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        //initially set the caption lower because it will rise as the image is hovered
+        transform: translate(-50%, 20%);
+        color: $color-white;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        opacity: 0;
+
+        //there is some shaking at the end due to the animation, we need to fix that
+        //we can use backface-visibility: hidden to fix this shaking
+
+        backface-visibility: hidden;
+
+
+        transition: all 0.5s ease;
+    }
+
+    //select the caption when the shape is hovered
+
+    &:hover &__caption {
+
+        //after the image is hovered
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    &:hover &__image {
+        transform: scale(1.0);
+
+
+        //modern CSS property filter to apply different filters on the image
+        //brightness value > 100% makes it birghter & <100% makes it darker
+        filter: blur(3px) brightness(80%);
+    }
+
+    
+}

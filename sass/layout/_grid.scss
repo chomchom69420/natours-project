@@ -1,0 +1,71 @@
+.row {
+    max-width: 114rem;  //1140px is the general practice
+
+    //max-width means that for viewport width >= 114rem
+    //it will have the width of 114rem  
+    //if the view-port width is <114rem, it will fill up 100%
+    //of the space it already has
+
+    
+    margin: 0 auto;  //center block elements inside another block elements
+
+    //this means top and bottom margin will be 0
+    //left and right will be automatic 
+    //browser will automatically figure out left and right margins
+    //margin-left==margin-right => element will be centered
+
+    //last one to not have a margin, use not pseudoselector
+        padding-bottom: $gutter-vertical; 
+    
+
+    //attribute selector - class begins with "col"
+
+    [class^="col-"]{
+        
+
+        float: left;
+
+        @include clearfix;
+        
+        //right margin will be present on all classes except the last one 
+
+        &:not(:last-child){
+            margin-right: $gutter-horizontal;
+        }
+
+    }
+    
+
+    .col-1-of-2{
+
+        //calc function where units can be mixed
+        //better than using SCSS calculations
+        //where the units have to be the same
+
+        //calc() is a CSS function
+        //we can use multiple units because during web-page loading all units are converted to px
+        //and hence there is no unit conflict 
+        width: calc((100% - #{$gutter-horizontal})/2);
+    }
+ 
+    .col-1-of-3{
+        width: calc((100% - 2*#{$gutter-horizontal})/3);
+    }
+
+    .col-1-of-4{
+        width: calc((100% - 3*#{$gutter-horizontal})/4);
+    }
+
+    .col-2-of-3{
+        width: calc(((2/3)*((100% - 2*#{$gutter-horizontal}))) + #{$gutter-horizontal});
+    }
+
+    .col-2-of-4{
+        width: calc((2*(100% - 3*#{$gutter-horizontal})/4) + #{$gutter-horizontal});
+    }
+
+    .col-3-of-4{
+        width: calc(3*((100% - 3*#{$gutter-horizontal})/4) + 2 * #{$gutter-horizontal});
+    }
+}
+

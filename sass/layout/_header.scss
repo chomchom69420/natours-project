@@ -1,0 +1,58 @@
+//header is not a component but a layout
+//so we include it here
+
+
+.header {
+    height: 95vh;
+    /* 95% of the viewport height for any viewport*/
+
+    //due to SCSS, we can write rgba() function in this format
+
+    background-image: linear-gradient(
+        to right bottom, 
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8)), 
+        url(../img/hero.jpg);
+
+    /*we have to specify gradient*/
+    /* ../ is one level up, then we go to the img folder, then select hero.jpg*/
+
+    background-size: cover;
+
+    /* /*covers the whole element area or viewport area whichever is applicable*/
+
+    background-position: top;
+    
+    /*whatever the viewport size, the top of the image stays at the top*/
+    /*if we reduce the vertical size of the viewport, the bottom of the image may get cropped
+    but the top will stay at its position*/
+
+    position: relative;
+
+
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    
+    &__logo-box{
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    }
+    
+    //& ust copy-pastes the outer selector
+
+    &__logo{
+        height: 3.5rem;  
+        /*width is autoscaled*/
+    }
+
+    &__text-box{
+        position: absolute;
+        top: 50%;
+        left:50%;
+        transform: translate(-40%, -50%);
+        text-align: center;
+    }
+    
+    
+}

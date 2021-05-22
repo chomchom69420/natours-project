@@ -1,0 +1,65 @@
+.composition{
+
+    position: relative;
+
+    &__photo {
+
+        width: 55%;
+        //box shadow of 1.5rem y offset, 4rem blur and .4 opacity 
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
+        border-radius: 2px;
+
+        //position: absolute means they will be positioned wrt some reference
+        //the ref will be the first parent that it encounters which has its position set to something
+        position: absolute;
+
+        //outline offset is something that cannot be done with borders
+        outline-offset: 2rem;
+
+        //setting z-index on regular images
+        z-index: 10;
+
+
+        transition: all 0.2s;
+
+        //width of images in %age - responsive images 
+
+        
+        &--p1 {
+            left: 0;
+            top: -2rem;
+        }
+
+        &--p2 {
+            right: 0;
+            top: 2rem;
+        }
+
+        &--p3 {
+            left: 20%;
+            top: 10rem;
+        }
+
+
+        &:hover{
+
+            //outline property 
+            outline: 1.5rem solid $color-primary;
+            
+            transform: scale(1.05) translateY(5px);
+
+            //box-shadow will be bigger and the opacity will be more
+            box-shadow: 0 2.5rem 4rem rgba($color-black, .5);
+
+            //hovered over image z index higher than other images 20>10
+            z-index: 20;
+
+        }
+    }
+
+    &:hover &__photo:not(:hover){
+        transform: scale(0.95);
+    }
+
+    //.composition:hover .composition__photo:not(:hover)
+}

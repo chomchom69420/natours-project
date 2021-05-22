@@ -1,0 +1,250 @@
+//CARD variables
+
+$card-height: 52rem;
+
+.card{
+
+    //FUNCTIONALITY
+    height:$card-height;
+
+    //we have to define the perspective to be a high number for perfect operation
+
+    //the perspective has to be defined on the parent element
+    //-moz is used to make it work for mozilla as well
+    
+    -moz-perspective: 150rem;
+    -webkit-perspective: 150rem;
+    -ms-perspective: 150rem;
+    -o-perspective: 150rem;
+    perspective: 150rem;
+
+    //we need to use absolute positioning to make them lie under each other
+    
+    position: relative;
+
+    // box-shadow: 0 1.5rem 4rem rgba($color-black, 0.8);
+
+    
+
+    &__side {
+
+        color: $color-white;
+        font-size: 2rem;
+        height:$card-height;
+
+        height:$card-height;
+        border-radius: 3px;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        // box-shadow: 0 1.5rem 4rem rgba($color-black, 0.8);
+
+        //the image is overflowing the parent (card__side) on the border-radius so we will hide the overflow
+        overflow: hidden;
+
+        //transition all properties
+        transition: all .8s ease;
+
+        //do not want to see the backside of the card
+        backface-visibility: hidden;
+
+        
+
+        &--front {
+            background-color: $color-white; 
+        }
+
+        &--back {
+            //back side is initally 180deg rotated
+            transform: rotateY(180deg);
+
+            &-1 {
+                background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+
+            }
+
+            &-2 {
+                background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+                
+            }
+
+            &-3 {
+                background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark);
+                
+            }
+            
+           
+        }
+    }
+
+    //when we hover the card we want the card side to transform
+    //so we need to select the card__side--front and card__side--back when the card is hovered
+    
+    &:hover &__side--front {
+        
+        //axis of rotation of the card is the Y axis
+        transform: rotateY(-180deg);
+    }
+
+    &:hover &__side--back {
+        
+        //axis of rotation of the card is the Y axis
+        transform: rotateY(0);
+    }
+
+    //FRONT SIDE STYLING BEGINS HERE
+    &__picture {
+
+        //bcg-size is set to cover so that it will cover the entire card
+        background-size: cover;
+        //value arrived at by experimentation
+        height: 23rem;
+
+        //background blend modes - blend two image elements or say image or gradient
+
+        background-blend-mode: screen;
+
+        //have to make a slanted path for the image for we use the clip-path: transition-property: ;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+        //after setting the clip-path the overflow:hidden does not work so we need to set the border radii manually as
+
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+
+
+        &--1 {
+
+            //we move out only 1 level (../) because we know that the code will be written later in the style.css file
+
+            //the url values are not changed during compilation so they must be put wrt the final compiled css file
+            background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url(../img/nat-5.jpg);
+        }
+
+        &--2{
+            background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), url(../img/nat-6.jpg);
+        }
+
+        &--3{
+            background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), url(../img/nat-7.jpg);
+        }
+    }
+
+    &__heading{
+        
+        font-size: 2.8rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        color: $color-white;
+        text-align: right;
+
+        position: absolute;
+        top: 12rem;
+        right: 2rem;
+
+        width: 75%;
+
+    }
+
+    &__heading--span {
+
+        padding: 1rem 1.5rem;
+
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+
+        &-1{
+
+            background-image: linear-gradient(to right bottom, 
+            rgba($color-secondary-light, 0.85), 
+            rgba($color-secondary-dark, 0.85));
+
+
+        }
+
+        &-2{
+
+            background-image: linear-gradient(to right bottom, 
+            rgba($color-primary-light, 0.85), 
+            rgba($color-primary-dark, 0.85));
+
+
+        }
+
+        &-3{
+
+            background-image: linear-gradient(to right bottom, 
+            rgba($color-tertiary-light, 0.85), 
+            rgba($color-tertiary-dark, 0.85));
+
+
+        }
+    }
+
+    &__details{
+
+        padding: 3rem;
+
+        ul {
+            color: $color-black;
+            list-style: none;
+
+            //centering a block element inside a block element
+            margin: 0 auto;
+
+            li {
+                width: 80%;
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 1rem;
+                &:not(:last-child){
+
+                    //have to give a border to every child except the last one
+                    border-bottom: 1px solid $colour-grey-light-2;
+                }
+            }
+            
+            
+            
+        }
+    }
+
+    //FRONT SIDE STYLING ENDS HERE
+
+    //BACK SIDE STYLING STARTS HERE
+
+    &__cta{
+        position: absolute;
+
+        //align the element horizontally and vertically in the middle 
+        top:50%;
+        left: 50%;
+        text-align: center;
+
+        //change the anchor point to middle of the element
+        transform: translate(-50%, -50%);
+
+        width: 90%;
+    }
+
+    &__price-box {
+        text-align: center;
+        margin-bottom: 8rem;
+        color: $color-white;
+    }
+
+    &__price-only {
+        font-size: 1.4rem;
+        text-transform: uppercase;
+    }
+
+    &__price-value
+    {
+        font-size: 6rem;
+        font-weight: 100;
+    }
+}

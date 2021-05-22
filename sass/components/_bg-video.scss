@@ -1,0 +1,28 @@
+.bg-video{
+
+    //absolute positioning
+    //parent should be set to position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    opacity: 0.2;
+
+    overflow: hidden;
+
+    &__content {
+
+        //maintains the aspect ratio of the image
+        height: 100%;
+        width: 100%;
+
+        //occupy the entire section as well as maintain aspect rati0
+        //object-fit property
+
+        object-fit: cover;  //similar to background-size: cover;
+
+        //object-fit:fill does the same but does not maintain the aspect ratio
+    }
+}

@@ -1,0 +1,27 @@
+//basic definitions about our entire project
+
+/*doing the basic reset*/
+
+/*after and before pseudoelements also included to prevent irregularities*/
+*, *::after, *::before{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: inherit;
+    /*sets it so that no padding, margin is added by default to the box
+        this padding is generally added by the browser*/
+
+}
+
+html{
+
+    //This defines what 1 rem is 
+    //base definition more than typography
+    font-size: 62.5%;
+}
+
+body {
+
+    //everything except box-sizing is typography related
+
+    box-sizing: border-box;
+}
